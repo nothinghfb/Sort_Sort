@@ -11,11 +11,14 @@ int main()
 	show(array, 14);
 	show(arrayd, 5);
 //	selectSort(array, 14);
-	selectSort(arrayd, 5);
+//	selectSort(arrayd, 5);
 //	insertSort(array, 14);
-	insertSort(arrayd, 5);
-	bubbleSort(array, 14);
-	bubbleSort(arrayd, 5);
+//	insertSort(arrayd, 5);
+//	bubbleSort(array, 14);
+//	bubbleSort(arrayd, 5);
+	mergeSort(array, 0, 13, 0);
+	mergeSort(arrayd, 0, 4, 0);
+
 	show(array, 14);
 	show(arrayd, 5);
 	system("pause");
