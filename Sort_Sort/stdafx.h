@@ -186,3 +186,47 @@ void mergeSort(T* array, const int beginInd, const int endInd, const int mode /*
 		mergeArray(array, beginInd, midInd, endInd, mode);
 	}
 }
+
+//	øÏÀŸ≈≈–Ú	O(nlogn)
+template<typename T> void quickSortSubFun(T*array, const int low, const int high,const int mode = 0);
+
+template<typename T>
+void quickSortSubFun(T*array, const int low, const int high,const int mode /*= 0*/)
+{
+	int i, j;
+	T temp;
+	if (low >= high)return;
+	i = low;
+	j = high;
+	temp = array [ i ];
+	while (i < j)
+	{
+		while (i < j &&(!mode? array [ j ] >= temp : array[j] < temp))
+		{
+			--j;
+		}
+		if (i < j)
+		{
+			array [ i++ ] = array [ j ];
+		}
+		while (i < j && (!mode ? array [ i ] < temp :array[ i ] >= temp))
+		{
+			++i;
+		}
+		if (i < j)
+		{
+			array [ j-- ] = array [ i ];
+		}
+	}
+	array [ i ] = temp;
+	quickSortSubFun(array, low, i - 1, mode);
+	quickSortSubFun(array, i + 1, high, mode);
+}
+
+template<typename T> void quickSort(T *array, const int len, const int mode = 0);
+
+template<typename T>
+void quickSort(T *array, const int len, const int mode /*= 0*/)
+{
+	quickSortSubFun(array, 0, len - 1, mode);
+}

@@ -16,8 +16,10 @@ int main()
 //	insertSort(arrayd, 5);
 //	bubbleSort(array, 14);
 //	bubbleSort(arrayd, 5);
-	mergeSort(array, 0, 13, 0);
-	mergeSort(arrayd, 0, 4, 0);
+// 	mergeSort(array, 0, 13, 0);
+// 	mergeSort(arrayd, 0, 4, 0);
+	quickSort(array, 14);
+	quickSort(arrayd, 5);
 
 	show(array, 14);
 	show(arrayd, 5);
