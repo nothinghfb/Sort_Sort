@@ -230,3 +230,33 @@ void quickSort(T *array, const int len, const int mode /*= 0*/)
 {
 	quickSortSubFun(array, 0, len - 1, mode);
 }
+
+
+//	Ï£¶ûÅÅÐò
+template<typename T> void shellSort(T *array, const int len, const int mode = 0);
+
+template<typename T>
+void shellSort(T *array, const int len, const int mode /*= 0*/)
+{
+	int i, j, h;
+	T temp;
+	for (h = len / 2;h > 0;h /= 2)
+	{
+		for (i = h;i < len;++i)
+		{
+			temp = array [ i ];
+			for (j = i - h;j >= 0;j -= h)
+			{
+				if (!mode ? temp <array [ j ] : temp >array [ j ])
+				{
+					array [ j + h ] = array [ j ];
+				}
+				else
+				{
+					break;
+				}
+				array [ j ] = temp;
+			}
+		}
+	}
+}
