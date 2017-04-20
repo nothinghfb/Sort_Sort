@@ -17,6 +17,60 @@
 
 //	查看数组
 template<typename T> void show(const T * const array, const int arrayLen);
+//	排序算法模板化实现
+//	选择排序	O(n^2)	O(1)
+template<typename T> void selectSort(T *array, const int arrayLen, const int mode = 0);
+//	插入排序	O(n^2)	O(1)
+template<typename T> void insertSort(T *array, const int arrayLen, const int mode = 0);
+//	冒泡排序	O(n^2) O(1)
+template<typename T> void bubbleSort(T *array, const int arrayLan, const int mode = 0);
+//	快速排序	O(nlogn)
+template<typename T> void quickSort(T *array, const int len, const int mode = 0);
+template<typename T> void quickSortSubFun(T*array, const int low, const int high, const int mode = 0);
+//	希尔排序
+template<typename T> void shellSort(T *array, const int len, const int mode = 0);
+//	归并排序	O(nlogn)
+//	合并子串函数
+template<typename T> void mergeArray(T *array, const int leftInd, const int midInd, const int rightInd, const int mode = 0);
+template<typename T> void mergeSort(T* array, const int beginInd, const int endInd, const int mode = 0);
+//	堆排序
+template<typename T> void minHeapSort(T* array, const int len, const int mode = 0);
+
+
+
+template<typename T> void adjustMinHeap(T* array, const int pos, const int len, const int mode = 0);
+
+template<typename T>
+void minHeapSort(T* array, const int len, const int mode /*= 0*/)
+{
+	int i;
+	for (i = len / 2-1;i >= 0;--i)
+	{
+		adjustMinHeap(array, i, len - 1, mode);
+	}
+	for (i = len - 1;i >= 0;--i)
+	{
+		T tmp = array [ 0 ];
+		array [ 0 ] = array [ i ];
+		array [ i ] = tmp;
+		adjustMinHeap(array, 0, i - 1, mode);
+	}
+}
+template<typename T>
+void adjustMinHeap(T* array, const int p, const int len, const int mode /*= 0*/)
+{
+	T temp;
+	int child;
+	int pos = p;
+	for (temp = array [ pos ];2 * pos + 1 <= len;pos = child)
+	{
+		child = 2 * pos + 1;
+		if (child < len && (mode? array [ child ] > array [ child + 1 ]:array [ child ] < array [ child + 1 ] )) ++child;
+		if (mode?array [ child ] < temp: array [ child ] > temp) array [ pos ] = array [ child ];
+		else break;
+	}
+	array [ pos ] = temp;
+}
 
 template<typename T>
 void show(const T * const array, const int arrayLen)
@@ -31,10 +85,6 @@ void show(const T * const array, const int arrayLen)
 
 
 
-
-//	排序算法模板化实现
-//	选择排序	O(n^2)	O(1)
-template<typename T> void selectSort(T *array, const int arrayLen, const int mode = 0);
 
 template<typename T>
 void selectSort(T *array, const int arrayLen, const int mode /*= 0*/)
@@ -60,8 +110,6 @@ void selectSort(T *array, const int arrayLen, const int mode /*= 0*/)
 }
 
 
-//	插入排序	O(n^2)	O(1)
-template<typename T> void insertSort(T *array, const int arrayLen, const int mode = 0);
 
 template<typename T>
 void insertSort(T *array, const int arrayLen, const int mode /*= 0*/)
@@ -88,8 +136,6 @@ void insertSort(T *array, const int arrayLen, const int mode /*= 0*/)
 
 
 
-//	冒泡排序	O(n^2) O(1)
-template<typename T> void bubbleSort(T *array, const int arrayLan, const int mode = 0);
 
 template<typename T>
 void bubbleSort(T *array, const int arrayLan, const int mode /*= 0*/)
@@ -113,9 +159,7 @@ void bubbleSort(T *array, const int arrayLan, const int mode /*= 0*/)
 
 
 
-//	归并排序	O(nlogn)
-//	合并子串函数
-template<typename T> void mergeArray(T *array, const int leftInd, const int midInd, const int rightInd,const int mode = 0);
+
 
 template<typename T>
 void mergeArray(T *array, const int leftInd, const int midInd, const int rightInd, const int mode /*= 0*/)
@@ -173,7 +217,6 @@ void mergeArray(T *array, const int leftInd, const int midInd, const int rightIn
 
 
 
-template<typename T> void mergeSort(T* array, const int beginInd, const int endInd,const int mode = 0);
 
 template<typename T>
 void mergeSort(T* array, const int beginInd, const int endInd, const int mode /*= 0*/)
@@ -187,8 +230,8 @@ void mergeSort(T* array, const int beginInd, const int endInd, const int mode /*
 	}
 }
 
-//	快速排序	O(nlogn)
-template<typename T> void quickSortSubFun(T*array, const int low, const int high,const int mode = 0);
+
+
 
 template<typename T>
 void quickSortSubFun(T*array, const int low, const int high,const int mode /*= 0*/)
@@ -223,7 +266,7 @@ void quickSortSubFun(T*array, const int low, const int high,const int mode /*= 0
 	quickSortSubFun(array, i + 1, high, mode);
 }
 
-template<typename T> void quickSort(T *array, const int len, const int mode = 0);
+
 
 template<typename T>
 void quickSort(T *array, const int len, const int mode /*= 0*/)
@@ -232,8 +275,7 @@ void quickSort(T *array, const int len, const int mode /*= 0*/)
 }
 
 
-//	希尔排序
-template<typename T> void shellSort(T *array, const int len, const int mode = 0);
+
 
 template<typename T>
 void shellSort(T *array, const int len, const int mode /*= 0*/)
