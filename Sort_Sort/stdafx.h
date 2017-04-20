@@ -15,30 +15,33 @@
 
 // TODO:  在此处引用程序需要的其他头文件
 
-//	查看数组
-template<typename T> void show(const T * const array, const int arrayLen);
+
 //	排序算法模板化实现
-//	选择排序	O(n^2)	O(1)
+//	选择排序	O(n^2)	O(1)	不稳定	n小时较好
 template<typename T> void selectSort(T *array, const int arrayLen, const int mode = 0);
-//	插入排序	O(n^2)	O(1)
+//	插入排序	O(n^2)	O(1)	稳定	大部分已有序时较好
 template<typename T> void insertSort(T *array, const int arrayLen, const int mode = 0);
-//	冒泡排序	O(n^2) O(1)
+//	冒泡排序	O(n^2)	 O(1)	稳定	n小时较好
 template<typename T> void bubbleSort(T *array, const int arrayLan, const int mode = 0);
-//	快速排序	O(nlogn)
+//	希尔排序	O(n^s)	1<s<2	O(1)	不稳定	s是所选分组	
+template<typename T> void shellSort(T *array, const int len, const int mode = 0);
+//	快速排序	O(nlogn)	O(logn)		不稳定	n大时较好
 template<typename T> void quickSort(T *array, const int len, const int mode = 0);
 template<typename T> void quickSortSubFun(T*array, const int low, const int high, const int mode = 0);
-//	希尔排序
-template<typename T> void shellSort(T *array, const int len, const int mode = 0);
-//	归并排序	O(nlogn)
+
+//	堆排序		O(nlogn)	O(1) 不稳定	 n大时较好
+template<typename T> void minHeapSort(T* array, const int len, const int mode = 0);
+template<typename T> void adjustMinHeap(T* array, const int pos, const int len, const int mode = 0);
+
+//	归并排序	O(nlogn)	O(n)	稳定	n大时较好
 //	合并子串函数
 template<typename T> void mergeArray(T *array, const int leftInd, const int midInd, const int rightInd, const int mode = 0);
 template<typename T> void mergeSort(T* array, const int beginInd, const int endInd, const int mode = 0);
-//	堆排序
-template<typename T> void minHeapSort(T* array, const int len, const int mode = 0);
 
 
 
-template<typename T> void adjustMinHeap(T* array, const int pos, const int len, const int mode = 0);
+//	查看数组
+template<typename T> void show(const T * const array, const int arrayLen);
 
 template<typename T>
 void minHeapSort(T* array, const int len, const int mode /*= 0*/)
